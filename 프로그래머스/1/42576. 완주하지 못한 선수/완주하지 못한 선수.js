@@ -1,19 +1,21 @@
 function solution(participant, completion) {
-    const countByPerson = new Map();
+    const countByParticipant = new Map()
     
-    // 1. participant 순회하면서 개수 세기
-    participant.forEach((person) => {
-        countByPerson.set(person, (countByPerson.get(person) || 0) + 1);
-    });
+    // participant 카운팅
+    participant.forEach((participant) => {
+        countByParticipant
+            .set(participant, 
+                (countByParticipant.get(participant) ||                 0) + 1)
+        });
     
-    // 2. completion 순회하면서 개수 빼기
-    completion.forEach((person) => {
-        countByPerson.set(person, (countByPerson.get(person) || 0) - 1);
-    });
+    // completion에서 카운트 빼기
+    completion.forEach((participant) => {
+        countByParticipant
+            .set(participant,
+                (countByParticipant.get(participant) ||                 0) -1)
+        });
     
-    // 3. 개수가 1 이상인 이름 반환
-    for (const [name, count] of countByPerson) {
-        if (count >= 1) return name;
-    }
-
+    // 값이 1인 사람 찾기
+    console.log([...countByParticipant])
+    return [...countByParticipant].find(([name, count]) => count >0)[0];
 }
