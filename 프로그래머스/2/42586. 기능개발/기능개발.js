@@ -6,18 +6,18 @@ function solution(progresses, speeds) {
         completedDays[i] = Math.ceil((100 - progresses[i])/speeds[i]);        
     }
     
-    let standard = completedDays[0];
-    let count = 1;
+    let standardDay = completedDays[0];
+    let deployCount = 1;
     
     for(let i = 1; i < progresses.length; i++) {  
-        if (completedDays[i] <= standard) {
-            count++;
+        if (completedDays[i] <= standardDay) {
+            deployCount++;
         } else {
-          answer.push(count);
-          standard = completedDays[i];
-          count = 1;  // reset the count
+          answer.push(deployCount);
+          standardDay = completedDays[i];
+          deployCount = 1;  // reset the count
         }
     }
-    answer.push(count);
+    answer.push(deployCount);
     return answer;
 }
